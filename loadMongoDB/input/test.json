@@ -1,0 +1,344 @@
+[
+  {
+    "date": "20130209",
+    "summary": [
+      {
+        "activity": "walking",
+        "group": "walking",
+        "duration": 1845.0,
+        "distance": 1562.0,
+        "steps": 2254,
+        "calories": 78
+      },
+      {
+        "activity": "transport",
+        "group": "transport",
+        "duration": 2621.0,
+        "distance": 17662.0
+      }
+    ],
+    "segments": [
+      {
+        "type": "place",
+        "startTime": "20130209T063407-0800",
+        "endTime": "20130209T132707-0800",
+        "place": {
+          "id": 6552482,
+          "name": "Home",
+          "type": "home",
+          "location": {
+            "lat": 47.67645,
+            "lon": -122.32305
+          }
+        },
+        "lastUpdate": "20140801T025223Z"
+      },
+      {
+        "type": "move",
+        "startTime": "20130209T132707-0800",
+        "endTime": "20130209T133415-0800",
+        "activities": [
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T132707-0800",
+            "endTime": "20130209T133415-0800",
+            "duration": 428.0,
+            "distance": 508.0,
+            "steps": 593,
+            "calories": 25,
+            "trackPoints": []
+          }
+        ],
+        "lastUpdate": "20130210T111823Z"
+      },
+      {
+        "type": "place",
+        "startTime": "20130209T133416-0800",
+        "endTime": "20130209T144452-0800",
+        "place": {
+          "id": 7187779,
+          "name": "Forza Coffee Co.",
+          "type": "foursquare",
+          "foursquareId": "4f18b993e4b0a9795c2bd702",
+          "foursquareCategoryIds": ["4bf58dd8d48988d16d941735"],
+          "location": {
+            "lat": 47.67877626216485,
+            "lon": -122.3267572769863
+          }
+        },
+        "lastUpdate": "20140609T164619Z"
+      },
+      {
+        "type": "move",
+        "startTime": "20130209T144452-0800",
+        "endTime": "20130209T145054-0800",
+        "activities": [
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T144452-0800",
+            "endTime": "20130209T145054-0800",
+            "duration": 362.0,
+            "distance": 378.0,
+            "steps": 479,
+            "calories": 19,
+            "trackPoints": []
+          }
+        ],
+        "lastUpdate": "20130210T111823Z"
+      },
+      {
+        "type": "place",
+        "startTime": "20130209T145055-0800",
+        "endTime": "20130209T171309-0800",
+        "place": {
+          "id": 6552482,
+          "name": "Home",
+          "type": "home",
+          "location": {
+            "lat": 47.67645,
+            "lon": -122.32305
+          }
+        },
+        "activities": [
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T162222-0800",
+            "endTime": "20130209T162232-0800",
+            "duration": 10.0,
+            "distance": 3.0,
+            "steps": 6,
+            "calories": 0,
+            "trackPoints": []
+          }
+        ],
+        "lastUpdate": "20140801T025223Z"
+      },
+      {
+        "type": "move",
+        "startTime": "20130209T171309-0800",
+        "endTime": "20130209T174745-0800",
+        "activities": [
+          {
+            "activity": "transport",
+            "group": "transport",
+            "manual": false,
+            "startTime": "20130209T171309-0800",
+            "endTime": "20130209T174352-0800",
+            "duration": 1843.0,
+            "distance": 11701.0,
+            "trackPoints": []
+          },
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T174352-0800",
+            "endTime": "20130209T174745-0800",
+            "duration": 233.0,
+            "distance": 145.0,
+            "steps": 291,
+            "calories": 7,
+            "trackPoints": []
+          }
+        ],
+        "lastUpdate": "20130210T125320Z"
+      },
+      {
+        "type": "place",
+        "startTime": "20130209T174746-0800",
+        "endTime": "20130209T183422-0800",
+        "place": {
+          "id": 7256266,
+          "name": "Fred Meyer",
+          "type": "foursquare",
+          "foursquareId": "4a88913ef964a520f00620e3",
+          "foursquareCategoryIds": [
+            "52f2ab2ebcbc57f1066b8b46",
+            "4bf58dd8d48988d118951735",
+            "4bf58dd8d48988d1f6941735"
+          ],
+          "location": {
+            "lat": 47.72331595342612,
+            "lon": -122.2919945355234
+          }
+        },
+        "activities": [
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T175022-0800",
+            "endTime": "20130209T175222-0800",
+            "duration": 120.0,
+            "distance": 98.0,
+            "steps": 131,
+            "calories": 5,
+            "trackPoints": []
+          },
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T175452-0800",
+            "endTime": "20130209T175522-0800",
+            "duration": 30.0,
+            "distance": 20.0,
+            "steps": 41,
+            "calories": 1,
+            "trackPoints": []
+          },
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T180223-0800",
+            "endTime": "20130209T180253-0800",
+            "duration": 30.0,
+            "distance": 15.0,
+            "steps": 30,
+            "calories": 1,
+            "trackPoints": []
+          },
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T181023-0800",
+            "endTime": "20130209T181053-0800",
+            "duration": 30.0,
+            "distance": 25.0,
+            "steps": 51,
+            "calories": 1,
+            "trackPoints": []
+          },
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T181223-0800",
+            "endTime": "20130209T181253-0800",
+            "duration": 30.0,
+            "distance": 20.0,
+            "steps": 41,
+            "calories": 1,
+            "trackPoints": []
+          },
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T181453-0800",
+            "endTime": "20130209T181523-0800",
+            "duration": 30.0,
+            "distance": 25.0,
+            "steps": 51,
+            "calories": 1,
+            "trackPoints": []
+          },
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T181724-0800",
+            "endTime": "20130209T181854-0800",
+            "duration": 90.0,
+            "distance": 76.0,
+            "steps": 152,
+            "calories": 4,
+            "trackPoints": []
+          },
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T182154-0800",
+            "endTime": "20130209T182224-0800",
+            "duration": 30.0,
+            "distance": 15.0,
+            "steps": 30,
+            "calories": 1,
+            "trackPoints": []
+          },
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T182324-0800",
+            "endTime": "20130209T182354-0800",
+            "duration": 30.0,
+            "distance": 20.0,
+            "steps": 41,
+            "calories": 1,
+            "trackPoints": []
+          },
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T182524-0800",
+            "endTime": "20130209T182854-0800",
+            "duration": 210.0,
+            "distance": 121.0,
+            "steps": 162,
+            "calories": 6,
+            "trackPoints": []
+          }
+        ],
+        "lastUpdate": "20150402T225557Z"
+      },
+      {
+        "type": "move",
+        "startTime": "20130209T183422-0800",
+        "endTime": "20130209T185023-0800",
+        "activities": [
+          {
+            "activity": "walking",
+            "group": "walking",
+            "manual": false,
+            "startTime": "20130209T183422-0800",
+            "endTime": "20130209T183724-0800",
+            "duration": 182.0,
+            "distance": 93.0,
+            "steps": 155,
+            "calories": 5,
+            "trackPoints": []
+          },
+          {
+            "activity": "transport",
+            "group": "transport",
+            "manual": false,
+            "startTime": "20130209T183724-0800",
+            "endTime": "20130209T185022-0800",
+            "duration": 778.0,
+            "distance": 5961.0,
+            "trackPoints": []
+          }
+        ],
+        "lastUpdate": "20130210T140715Z"
+      },
+      {
+        "type": "place",
+        "startTime": "20130209T185023-0800",
+        "endTime": "20130210T060517-0800",
+        "place": {
+          "id": 6552482,
+          "name": "Home",
+          "type": "home",
+          "location": {
+            "lat": 47.67645,
+            "lon": -122.32305
+          }
+        },
+        "lastUpdate": "20140801T025223Z"
+      }
+    ],
+    "caloriesIdle": 1439,
+    "lastUpdate": "20150402T225557Z"
+  }
+]
