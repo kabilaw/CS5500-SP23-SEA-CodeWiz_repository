@@ -121,7 +121,4 @@ class UserActivityTest {
         assertEquals(testsegments,testUserActivity.getSegments());
     }
 
-    @Test
-    void testToString() {
-    }
 }
