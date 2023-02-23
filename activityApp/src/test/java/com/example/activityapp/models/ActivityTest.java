@@ -120,7 +120,7 @@ class ActivityTest {
 
     @Test
     void setDistance() {
-        testActivity.setDuration(1.0);
+        testActivity.setDistance(1.0);
         assertEquals(1.0, testActivity.getDistance());
     }
 
