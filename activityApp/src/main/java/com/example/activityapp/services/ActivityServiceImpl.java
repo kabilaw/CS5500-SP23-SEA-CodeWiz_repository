@@ -97,4 +97,12 @@ public class ActivityServiceImpl implements ActivityService {
   public List<UserActivity> findAll() {
     return activityRepository.findAll();
   }
+  public void deleteByDate(String date) {
+    UserActivity userActivity = findByDate(date);
+    if (!ObjectUtils.isEmpty(userActivity)) {
+      activityRepository.deleteByDate(date);
+      return;
+    }
+    throw new ActivityNotFoundException(String.format("Activity with date %s not found", date));
+  }
 }

@@ -10,11 +10,7 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/")
@@ -82,4 +78,12 @@ public class ActivityController {
     return activityService.findAll();
   }
 
+  @DeleteMapping(value = "/byDate/{date}")
+  public void deleteActivityByDate(@PathVariable String date) {
+    if (!ObjectUtils.isEmpty(date)) {
+      activityService.deleteByDate(date);
+      return;
+    }
+    throw new MissingParameterException("Missing required parameter 'date'");
+  }
 }

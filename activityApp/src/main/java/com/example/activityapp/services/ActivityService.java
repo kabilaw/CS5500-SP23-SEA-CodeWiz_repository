@@ -11,5 +11,7 @@ public interface ActivityService {
   List<UserActivity> getActivitiesBetweenDates(String startDateString, String endDateString);
   UserActivity getActivityByDateAndType(String date, String type);
   int getActivityCaloriesByDate(String date);
+  void deleteByDate(String date);
+
 //  void insertRecord(UserActivity payload);
 }
