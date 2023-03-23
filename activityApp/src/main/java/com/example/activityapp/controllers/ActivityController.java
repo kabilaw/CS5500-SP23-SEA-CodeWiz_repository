@@ -1,9 +1,15 @@
 package com.example.activityapp.controllers;
 
+import com.example.activityapp.exceptions.ActivityNotFoundException;
+import com.example.activityapp.exceptions.MissingParameterException;
 import com.example.activityapp.models.UserActivity;
 import com.example.activityapp.services.ActivityService;
+import com.example.activityapp.services.GptService;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,40 +23,45 @@ public class ActivityController {
   @Autowired
   private ActivityService activityService;
 
-  public ActivityController(ActivityService activityService) {
-    this.activityService = activityService;
-  }
+  @Autowired
+  private GptService gptService;
 
-//  @GetMapping(value = "/byDate/{date}")
-//  public UserActivity getActivityByDate(@PathVariable String date){
-//    UserActivity userActivity = activityService.findByDate(date);
-////    if (userActivity == null) {
-////      return null;
-////    }
-//    return userActivity;
-//  }
+  public ActivityController(ActivityService activityService, GptService gptService) {
+    this.activityService = activityService;
+    this.gptService = gptService;
+  }
 
 //  the below method fetches a record by date with the option to filter segments by type
   @GetMapping(value = "/byDate/{date}")
   public UserActivity getActivityByDate(@PathVariable String date, @RequestParam(value = "type", required = false) String type){
-    if (type != null){
-      UserActivity userActivity = activityService.getActivityByDateAndType(date, type);
-      return userActivity;
+    if (!ObjectUtils.isEmpty(type)){
+      return activityService.getActivityByDateAndType(date, type);
     }
-    if (date != null) {
-      UserActivity userActivity = activityService.findByDate(date);
-      return userActivity;
+    if (!ObjectUtils.isEmpty(date)) {
+      return activityService.findByDate(date);
     }
-    return null;
+    throw new ActivityNotFoundException(String.format("Activity with date %s and type %s not found", date, type));
   }
 
-//  the below method uses mongoRepository to fetch documents from Database
-//  @GetMapping(value = "/byDate/{start}/{end}")
-//  public List<UserActivity> getActivityByDateBetween(@PathVariable("start") String startDateString,
-//      @PathVariable("end") String endDateString){
-//    List<UserActivity> userActivities = activityService.findByDateBetween(startDateString, endDateString);
-//    return userActivities;
+  @GetMapping(value = "/byDate/{date}/calories")
+  public Map<String, Object> getActivityByDate(@PathVariable String date){
+    if (!ObjectUtils.isEmpty(date)) {
+      int dailyCalories = activityService.getActivityCaloriesByDate(date);
+      String gptResponse = gptService.getChatGptResponse(dailyCalories);
+      Map<String, Object> response = new HashMap<>();
+      response.put("calories", dailyCalories);
+      response.put("ChatGPTResponse", gptResponse);
+      return response;
+    }
+    throw new MissingParameterException("Missing required parameter 'date'");
+  }
+
+
+//  @PostMapping("/insertRecord")
+//  public void insertRecord(@RequestBody UserActivity payload) {
+//    activityService.insertRecord(payload);
 //  }
+
 
 //  the below method uses mongoTemplate approach to fetch documents from Database
   @GetMapping(value = "/byDate/{start}/{end}")
@@ -65,22 +76,6 @@ public class ActivityController {
     UserActivity userActivity = activityService.getActivityByDateAndType(date, type);
     return userActivity;
   }
-  @GetMapping(value = "/byGroup/{date}/{type}/{group}")
-  public UserActivity getActivityByGroup(@PathVariable("date") String date, @PathVariable("type") String type, @PathVariable("group") String group){
-    UserActivity userActivity = activityService.getActivityByTypeAndGroup(date, type, group);
-    return userActivity;
-  }
-
-// the below method uses RequestParam annotation instead of PathVariable
-//  @GetMapping(value = "/byDate")
-//  public List<UserActivity> getActivityByDateBetween(@RequestParam("start") String startDateString,
-//      @RequestParam("end") String endDateString){
-//    List<UserActivity> userActivities = activityService.findByDateBetween(startDateString, endDateString);
-//    if (userActivities == null) {
-//      return null;
-//    }
-//    return userActivities;
-//  }
 
   @GetMapping(value = "/allActivities")
   public List<UserActivity> getActivities() {

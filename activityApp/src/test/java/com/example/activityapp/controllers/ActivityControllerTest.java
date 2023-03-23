@@ -2,6 +2,7 @@ package com.example.activityapp.controllers;
 
 import com.example.activityapp.models.UserActivity;
 import com.example.activityapp.services.ActivityService;
+import com.example.activityapp.services.GptService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -14,10 +15,12 @@ class ActivityControllerTest {
     private ActivityController activityController;
     private ActivityService activityService;
 
+    private GptService gptService;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        activityController = new ActivityController(activityService);
+        activityController = new ActivityController(activityService, gptService);
 
     }
 

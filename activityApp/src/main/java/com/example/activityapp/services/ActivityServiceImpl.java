@@ -1,9 +1,10 @@
 package com.example.activityapp.services;
 
+import com.example.activityapp.exceptions.ActivityNotFoundException;
 import com.example.activityapp.models.ActivitySegment;
+import com.example.activityapp.models.ActivitySummary;
 import com.example.activityapp.models.UserActivity;
 import com.example.activityapp.repositories.ActivityRepository;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,27 +12,21 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 @Service
-//@EnableMongoRepositories
 public class ActivityServiceImpl implements ActivityService {
   @Autowired
   private ActivityRepository activityRepository;
-//  constructor not required
-//  public ActivityServiceImpl(ActivityRepository activityRepository) {
-//    this.activityRepository = activityRepository;
-//  }
 
 //  MongoTemplate Section
   @Autowired
   private MongoTemplate mongoTemplate;
-//  constructor not required
-//  public ActivityServiceImpl(MongoTemplate mongoTemplate) {
-//    this.mongoTemplate = mongoTemplate;
-//  }
+
 // Use the MongoRepository method instead for this one
+  @Override
   public List<UserActivity> getActivitiesBetweenDates(String startDateString, String endDateString) {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 //    LocalDate startDate = LocalDate.parse(startDateString, formatter);
 //    LocalDate endDate = LocalDate.parse(endDateString, formatter);
     Criteria criteria = Criteria.where("date").gte(startDateString).lt(endDateString);
@@ -39,22 +34,13 @@ public class ActivityServiceImpl implements ActivityService {
     return mongoTemplate.find(query, UserActivity.class);
   }
 
-//  public UserActivity findActivityByDateAndType(String date, String type) {
-//    UserActivity activity = activityRepository.findByDate(date);
-//    if (activity == null) {
-//      return null;
-//    }
-//    List<ActivitySegment> segments = activityRepository.findSegmentsByType(type);
-//    activity.setSegments(segments);
-//    return activity;
-//  }
-
+  @Override
   public UserActivity getActivityByDateAndType(String date, String type) {
     Query query = new Query(Criteria.where("date").is(date));
     UserActivity activity = mongoTemplate.findOne(query, UserActivity.class);
 
     if (activity == null) {
-      throw new RuntimeException("Activity not found for date: " + date);
+      throw new ActivityNotFoundException(String.format("Activity with date %s not found", date));
     }
 
     List<ActivitySegment> filteredSegments = activity.getSegments().stream()
@@ -64,29 +50,42 @@ public class ActivityServiceImpl implements ActivityService {
 
     return activity;
   }
-
-  public UserActivity getActivityByTypeAndGroup(String date, String type, String group) {
-    Query query = new Query(Criteria.where("date").is(date));
-    UserActivity activity = mongoTemplate.findOne(query, UserActivity.class);
-
+  @Override
+  public int getActivityCaloriesByDate(String date) {
+    UserActivity activity = findByDate(date);
     if (activity == null) {
-      throw new RuntimeException("Activity not found for date: " + date);
+      throw new ActivityNotFoundException(String.format("Activity with date %s not found", date));
+    }
+    List<ActivitySummary> summaries = activity.getSummary();
+    int dailyCalories = 0;
+    for (ActivitySummary summary: summaries) {
+      dailyCalories += summary.getCalories();
     }
 
-    List<ActivitySegment> filteredSegments = activity.getSegments().stream()
-        .filter(segment -> segment.getType().equals(type))
-        .collect(Collectors.toList());
-    activity.setSegments(filteredSegments);
 
-//    List<Activity> filteredActivities = filteredSegments.stream().filter(.)
-    return activity;
+    return dailyCalories;
   }
 
 //  MongoTemplate section END
+//  @Override
+//  public void insertRecord(UserActivity payload) {
+//    // Insert the document into your collection
+//    String date = payload.getDate();
+//    UserActivity userActivity = findByDate(date);
+//    if (ObjectUtils.isEmpty(userActivity)) {
+//      activityRepository.save(payload);
+//      return;
+//    }
+//    throw new RuntimeException("Non Unique record");
+//  }
 
   @Override
   public UserActivity findByDate(String date) {
-    return activityRepository.findByDate(date);
+    UserActivity userActivity = activityRepository.findByDate(date);
+    if (ObjectUtils.isEmpty(userActivity)) {
+      throw new ActivityNotFoundException(String.format("Activity with date %s not found", date));
+    }
+    return userActivity;
   }
 
   @Override
