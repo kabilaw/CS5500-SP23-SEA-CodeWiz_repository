@@ -65,6 +65,17 @@ public class ActivityServiceImpl implements ActivityService {
 
     return dailyCalories;
   }
+  public void insertActivity(UserActivity payload) {
+    //if value exists, then don't add.
+    String date = payload.getDate();
+    UserActivity userActivity = findByDate(date);
+    if (ObjectUtils.isEmpty(userActivity)) {
+      activityRepository.save(payload);
+      return;
+    }
+    throw new RuntimeException("This record is not unique.");
+
+  }
 
 //  MongoTemplate section END
 //  @Override
@@ -82,9 +93,6 @@ public class ActivityServiceImpl implements ActivityService {
   @Override
   public UserActivity findByDate(String date) {
     UserActivity userActivity = activityRepository.findByDate(date);
-    if (ObjectUtils.isEmpty(userActivity)) {
-      throw new ActivityNotFoundException(String.format("Activity with date %s not found", date));
-    }
     return userActivity;
   }
 

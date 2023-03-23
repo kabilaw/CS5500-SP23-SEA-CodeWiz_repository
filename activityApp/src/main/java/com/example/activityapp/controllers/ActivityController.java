@@ -52,12 +52,14 @@ public class ActivityController {
     throw new MissingParameterException("Missing required parameter 'date'");
   }
 
-
-//  @PostMapping("/insertRecord")
-//  public void insertRecord(@RequestBody UserActivity payload) {
-//    activityService.insertRecord(payload);
-//  }
-
+  @PostMapping("/insertActivity")
+  public void insertActivity(@RequestBody UserActivity payload) {
+    if (payload != null) {
+      activityService.insertActivity(payload);
+      return;
+    }
+    //throw new ActivityNotFoundException("Not a valid payload.");
+  }
 
 //  the below method uses mongoTemplate approach to fetch documents from Database
   @GetMapping(value = "/byDate/{start}/{end}")

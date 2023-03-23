@@ -12,6 +12,5 @@ public interface ActivityService {
   UserActivity getActivityByDateAndType(String date, String type);
   int getActivityCaloriesByDate(String date);
   void deleteByDate(String date);
-
-//  void insertRecord(UserActivity payload);
+  void insertActivity(UserActivity payload);
 }
