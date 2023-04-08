@@ -34,3 +34,6 @@ build/
 
 ### App Properties ###
 /src/main/resources/application.properties
+
+/codemr
+
