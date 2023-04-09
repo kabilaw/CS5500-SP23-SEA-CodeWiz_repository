@@ -52,6 +52,18 @@ public class ActivityController {
     throw new MissingParameterException("Missing required parameter 'date'");
   }
 
+  @GetMapping(value = "/assistant")
+  public String getAssistantMessage(@RequestParam int dailyCalories, @RequestParam String question){
+    if (!ObjectUtils.isEmpty(dailyCalories) && !ObjectUtils.isEmpty(question)) {
+      String gptResponse = gptService.getChatGptResponse(dailyCalories, question);
+//      Map<String, Object> response = new HashMap<>();
+//      response.put("calories", dailyCalories);
+//      response.put("ChatGPTResponse", gptResponse);
+      return gptResponse;
+    }
+    throw new MissingParameterException("Missing required parameters");
+  }
+
   @PostMapping("/insertActivity")
   public void insertActivity(@RequestBody UserActivity payload) {
     if (payload != null) {

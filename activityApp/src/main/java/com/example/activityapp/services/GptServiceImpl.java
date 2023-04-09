@@ -42,4 +42,38 @@ public class GptServiceImpl implements GptService {
     return responses.get(0);
   }
 
+
+  HashMap<String, String> questionList = new HashMap<>() {{
+    put("1", "i burned %s calories today, is it a good amount generally speaking? provide your answer in 350 words or less and include the number of calories i burned in your answer");
+    put("2", "i burned %s calories today, how can i burn more calories? provide your answer in 350 words or less and include the number of calories i burned in your answer");
+    put("3", "i burned %s calories today, do you recommend a certain diet? provide your answer in 350 words or less and include the number of calories i burned in your answer");
+    put("4", "i burned %s calories today, what kind of sports burns more calories? provide your answer in 350 words or less and include the number of calories i burned in your answer");
+  }};
+
+  @Override
+  public String getChatGptResponse(int calories, String question) {
+    String gptAPIkey = env.getProperty("gpt.api.key");
+    String currentQuestion = questionList.get(question);
+    String q = String.format(currentQuestion, calories);
+    OpenAiService service = new OpenAiService(gptAPIkey,
+        Duration.ofSeconds(30));
+    ChatMessage chatMessage = new ChatMessage("user", q);
+    List<ChatMessage> chatMessages = new ArrayList<>();
+    chatMessages.add(chatMessage);
+    ChatCompletionRequest completionRequest = ChatCompletionRequest.builder()
+        .messages(chatMessages)
+        .model("gpt-3.5-turbo")
+        .user("user")
+        .logitBias(new HashMap<>())
+        .maxTokens(350)
+        .n(1)
+        .build();
+    List<ChatCompletionChoice> choices = service.createChatCompletion(completionRequest).getChoices();
+    List<String> responses = new ArrayList<>();
+    for (ChatCompletionChoice choice: choices) {
+      responses.add(choice.getMessage().getContent());
+    }
+    return responses.get(0);
+  }
+
 }
