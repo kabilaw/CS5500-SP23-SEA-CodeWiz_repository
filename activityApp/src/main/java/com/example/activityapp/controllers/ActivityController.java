@@ -9,8 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 @RestController
 @RequestMapping(path = "/")
@@ -52,13 +55,24 @@ public class ActivityController {
     throw new MissingParameterException("Missing required parameter 'date'");
   }
 
-  @GetMapping(value = "/assistant")
-  public String getAssistantMessage(@RequestParam int dailyCalories, @RequestParam String question){
+//  @GetMapping(value = "/assistant")
+//  public String getAssistantMessage(@RequestParam int dailyCalories, @RequestParam String question){
+//    if (!ObjectUtils.isEmpty(dailyCalories) && !ObjectUtils.isEmpty(question)) {
+//      String gptResponse = gptService.getChatGptResponse(dailyCalories, question);
+////      Map<String, Object> response = new HashMap<>();
+////      response.put("calories", dailyCalories);
+////      response.put("ChatGPTResponse", gptResponse);
+//      return gptResponse;
+//    }
+//    throw new MissingParameterException("Missing required parameters");
+//  }
+
+
+  @CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.POST})
+  @GetMapping(value = "/assistant", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+  public SseEmitter getAssistantMessage(@RequestParam int dailyCalories, @RequestParam String question) {
     if (!ObjectUtils.isEmpty(dailyCalories) && !ObjectUtils.isEmpty(question)) {
-      String gptResponse = gptService.getChatGptResponse(dailyCalories, question);
-//      Map<String, Object> response = new HashMap<>();
-//      response.put("calories", dailyCalories);
-//      response.put("ChatGPTResponse", gptResponse);
+      SseEmitter gptResponse = gptService.getChatGptResponse(dailyCalories, question);
       return gptResponse;
     }
     throw new MissingParameterException("Missing required parameters");
