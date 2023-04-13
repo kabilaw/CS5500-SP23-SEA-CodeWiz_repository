@@ -68,7 +68,7 @@ public class ActivityController {
 //  }
 
 
-  @CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.POST})
+//  @CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.POST})
   @GetMapping(value = "/assistant", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
   public SseEmitter getAssistantMessage(@RequestParam int dailyCalories, @RequestParam String question) {
     if (!ObjectUtils.isEmpty(dailyCalories) && !ObjectUtils.isEmpty(question)) {
