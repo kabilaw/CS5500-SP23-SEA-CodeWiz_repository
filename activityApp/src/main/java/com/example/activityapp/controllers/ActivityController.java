@@ -33,6 +33,10 @@ public class ActivityController {
     this.gptService = gptService;
   }
 
+  @GetMapping(value = "/")
+  public String getActivityByDate(){
+    return "ready to receive requests";
+  }
 
   /**
    * Returns a user activity based on the date and type if the type of activity if provided. Else,

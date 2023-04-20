@@ -9,7 +9,8 @@ public class ActivityAppWebMvcConfigurer implements WebMvcConfigurer {
   @Override
   public void addCorsMappings(CorsRegistry registry) {
     registry.addMapping("/**")
-        .allowedOrigins("http://localhost:3000")
+//        .allowedOrigins("http://localhost:3000")
+        .allowedOrigins("https://www.activity-app.site/", "https://activity-app.site/")
         .allowedMethods("GET", "POST")
         .allowCredentials(true)
         .maxAge(3600);
