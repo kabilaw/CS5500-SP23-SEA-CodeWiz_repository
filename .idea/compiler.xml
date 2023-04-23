@@ -10,10 +10,6 @@
         <module name="activityApp" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="activityApp" target="17" />
-      <module name="mongoDBImport" target="16" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

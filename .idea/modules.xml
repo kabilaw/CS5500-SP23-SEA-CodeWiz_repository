@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CS5500-SP23-SEA-CodeWiz_repository.iml" filepath="$PROJECT_DIR$/.idea/CS5500-SP23-SEA-CodeWiz_repository.iml" />
-      <module fileurl="file://$PROJECT_DIR$/activityApp/activityApp.iml" filepath="$PROJECT_DIR$/activityApp/activityApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/loadMongoDB/mongoDBImport.iml" filepath="$PROJECT_DIR$/loadMongoDB/mongoDBImport.iml" />
     </modules>
   </component>
 </project>
