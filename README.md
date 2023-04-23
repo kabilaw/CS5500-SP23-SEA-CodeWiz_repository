@@ -91,7 +91,7 @@ In the above code snippet, the addCorsMappings method is overridden to allow cro
 ## Known-Problems
 The following problems are currently known in the ActivityApp web application:
 
-This technically not a problem but the nature of data we have makes it hard to collect through normal forms as it is better to collect through a hardware tracking device and then to be sent to our servers.
+This is technically not a problem but the nature of data we have makes it hard to collect through normal forms as it is better to collect through a hardware tracking device and then to be sent to our servers.
 However, due to the nature of this project we have created a simple form to collect the data partially to prove that our 'AddActivity' endpoint works correctly when used in our frontend, thus we have only implemented it in our development environment and have not pushed it to production.
 
 below is an image for that page.
