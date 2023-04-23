@@ -4,17 +4,17 @@ The Activity App is a Spring Boot application that allows users to create, view,
 
 ## Table of Contents
 
-- [Code Location](#Code Location)
+- [Code Location](#Code-Location)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Endpoints](#Endpoints)
 - [Configuration](#configuration)
-- [Test Metrics](#Test Metrics)
+- [Test Metrics](#Test-Metrics)
 - [Known Problems](#Known-Problems)
 - [Production](#Production)
 - [Contributing](#contributing)
 
-## Code Location
+## Code-Location
 
 1. the backend code for the Activity App is located in this github repo
 2. the frontend code for the Activity App can found on this github repo https://github.com/khalid-bkr/Activity-app-reactTS
