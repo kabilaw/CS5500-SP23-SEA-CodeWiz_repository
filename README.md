@@ -10,7 +10,8 @@ The Activity App is a Spring Boot application that allows users to create, view,
 - [Endpoints](#Endpoints)
 - [Configuration](#configuration)
 - [Test Metrics](#Test Metrics)
-- [Known Problems](#Known Problems)
+- [Known Problems](#Known-Problems)
+- [Production](#Production)
 - [Contributing](#contributing)
 
 ## Code Location
@@ -87,7 +88,7 @@ public class ActivityAppWebMvcConfigurer implements WebMvcConfigurer {
 ```
 In the above code snippet, the addCorsMappings method is overridden to allow cross-origin requests from specified origins and HTTP methods. This configuration allows the http://localhost:3000 origins to make GET and POST requests to the application. If you want to limit access to specific origins, you can add or remove origins in the allowedOrigins method as needed. 
 
-## Known Problems
+## Known-Problems
 The following problems are currently known in the ActivityApp web application:
 
 This technically not a problem but the nature of data we have makes it hard to collect through normal forms as it is better to collect through a hardware tracking device and then to be sent to our servers.
@@ -97,7 +98,7 @@ below is an image for that page.
 
 ![Add Activity Page](images/addNewActivityPage.png)
 
-## Test Metrics
+## Test-Metrics
 - Test success rate: 100%
 - Number of tests: 98 unit tests
 - Test execution time: approximately 20 seconds
